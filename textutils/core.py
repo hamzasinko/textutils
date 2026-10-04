@@ -6,7 +6,7 @@ hints so editors can offer completions.
 
 import re
 
-__all__ = ["word_count", "character_count", "reverse", "capitalize_words"]
+__all__ = ["word_count", "character_count", "reverse", "capitalize_words", "slugify"]
 
 _WORD_START = re.compile(r"(?<!\S)\w")
 
@@ -128,3 +128,40 @@ def capitalize_words(text: str) -> str:
     """
     _validate_text(text)
     return _WORD_START.sub(lambda match: match.group(0).upper(), text)
+
+
+def slugify(text: str) -> str:
+    """Turn *text* into a URL-friendly slug.
+
+    The input is lowercased, every run of characters outside ``a-z0-9``
+    (spaces, punctuation, underscores, accents, ...) is replaced by a single
+    hyphen, and leading/trailing hyphens are removed. Existing hyphens are
+    kept as separators, so ``"well-known"`` stays ``"well-known"`` while
+    ``"foo_bar"`` becomes ``"foo-bar"``.
+
+    Args:
+        text: The string to slugify.
+
+    Returns:
+        A slug containing only lowercase ASCII letters, digits, and internal
+        hyphens. An empty string, or a string with no letters/digits,
+        returns ``""``.
+
+    Raises:
+        TypeError: If *text* is not a :class:`str`.
+
+    Examples:
+        >>> slugify("Hello, World!")
+        'hello-world'
+        >>> slugify("  Hello, World! Open Source  ")
+        'hello-world-open-source'
+        >>> slugify("Python --- is fun")
+        'python-is-fun'
+        >>> slugify("Version 2.0 released")
+        'version-2-0-released'
+        >>> slugify("!!!")
+        ''
+    """
+    _validate_text(text)
+    slug = re.sub(r"[^a-z0-9]+", "-", text.lower())
+    return slug.strip("-")

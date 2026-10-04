@@ -10,6 +10,7 @@ function has type hints, a full docstring, and tests.
 - `character_count(text)` — number of characters in a string.
 - `reverse(text)` — the string reversed.
 - `capitalize_words(text)` — first letter of each word capitalized.
+- `slugify(text)` — a URL-friendly slug (lowercase, hyphen-separated).
 
 Edge cases are handled: empty strings return empty results, and non-string
 input raises `TypeError`.
@@ -29,12 +30,13 @@ Requires Python 3.8 or newer. No third-party dependencies.
 ## Usage
 
 ```python
-from textutils import word_count, character_count, reverse, capitalize_words
+from textutils import word_count, character_count, reverse, capitalize_words, slugify
 
 word_count("hello world") # 2
 character_count("hello")          # 5
 reverse("stressed")              # "desserts"
 capitalize_words("hello world")   # "Hello World"
+slugify("Hello, World!")          # "hello-world"
 ```
 
 ## Contributing
