@@ -122,7 +122,7 @@ def capitalize_words(text: str) -> str:
         >>> capitalize_words("hello WORLD")
         'Hello WORLD'
         >>> capitalize_words("it's fine")
-        "It's fine"
+        "It's Fine"
         >>> capitalize_words("")
         ''
     """
