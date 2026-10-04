@@ -6,10 +6,11 @@ from textutils import (
     capitalize_words,
     character_count,
     reverse,
+    slugify,
     word_count,
 )
 
-ALL_FUNCTIONS = (word_count, character_count, reverse, capitalize_words)
+ALL_FUNCTIONS = (word_count, character_count, reverse, capitalize_words, slugify)
 
 
 class TestWordCount:
@@ -94,6 +95,43 @@ class TestCapitalizeWords:
 
     def test_empty_string(self) -> None:
         assert capitalize_words("") == ""
+
+
+class TestSlugify:
+    """Tests for slugify."""
+
+    def test_punctuation_becomes_hyphen(self) -> None:
+        assert slugify("Hello, World!") == "hello-world"
+
+    def test_repeated_spaces_collapse(self) -> None:
+        assert slugify("  Hello, World! Open Source  ") == "hello-world-open-source"
+
+    def test_repeated_hyphens_collapse(self) -> None:
+        assert slugify("Python --- is fun") == "python-is-fun"
+
+    def test_digits_kept(self) -> None:
+        assert slugify("Version 2.0 released") == "version-2-0-released"
+
+    def test_leading_trailing_symbols_removed(self) -> None:
+        assert slugify("!!!") == ""
+
+    def test_empty_string(self) -> None:
+        assert slugify("") == ""
+
+    def test_existing_hyphen_kept(self) -> None:
+        assert slugify("well-known") == "well-known"
+
+    def test_underscore_becomes_hyphen(self) -> None:
+        assert slugify("foo_bar") == "foo-bar"
+
+    def test_already_slug(self) -> None:
+        assert slugify("hello-world") == "hello-world"
+
+    def test_non_ascii_stripped(self) -> None:
+        assert slugify("caf\u00e9 au lait") == "caf-au-lait"
+
+    def test_lowercases_input(self) -> None:
+        assert slugify("HELLO WORLD") == "hello-world"
 
 
 @pytest.mark.parametrize("function", ALL_FUNCTIONS)

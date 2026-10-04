@@ -11,6 +11,7 @@ from .core import (
     capitalize_words,
     character_count,
     reverse,
+    slugify,
     word_count,
 )
 
@@ -19,6 +20,7 @@ __all__ = [
     "character_count",
     "reverse",
     "capitalize_words",
+    "slugify",
 ]
 
 __version__ = "0.1.0"
