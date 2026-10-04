@@ -4,7 +4,11 @@ Every function validates its input, handles empty strings, and carries type
 hints so editors can offer completions.
 """
 
-__all__ = ["word_count", "character_count"]
+import re
+
+__all__ = ["word_count", "character_count", "reverse", "capitalize_words"]
+
+_WORD_START = re.compile(r"(?<!\S)\w")
 
 
 def _validate_text(text: str) -> None:
@@ -69,3 +73,58 @@ def character_count(text: str) -> int:
     """
     _validate_text(text)
     return len(text)
+
+
+def reverse(text: str) -> str:
+    """Return *text* with its characters in reverse order.
+
+    Args:
+        text: The string to reverse.
+
+    Returns:
+        A new string holding the characters of *text* in reverse order. An
+        empty string returns an empty string.
+
+    Raises:
+        TypeError: If *text* is not a :class:`str`.
+
+    Examples:
+        >>> reverse("stressed")
+        'desserts'
+        >>> reverse("abc")
+        'cba'
+        >>> reverse("")
+        ''
+    """
+    _validate_text(text)
+    return text[::-1]
+
+
+def capitalize_words(text: str) -> str:
+    """Uppercase the first character of every word in *text*.
+
+    Only the first character of each word is changed; the rest of each word
+    is left exactly as it was. Whitespace, including newlines, is preserved.
+
+    Args:
+        text: The string to transform.
+
+    Returns:
+        A new string with the first character of each word uppercased. An
+        empty string returns an empty string.
+
+    Raises:
+        TypeError: If *text* is not a :class:`str`.
+
+    Examples:
+        >>> capitalize_words("hello world")
+        'Hello World'
+        >>> capitalize_words("hello WORLD")
+        'Hello WORLD'
+        >>> capitalize_words("it's fine")
+        "It's fine"
+        >>> capitalize_words("")
+        ''
+    """
+    _validate_text(text)
+    return _WORD_START.sub(lambda match: match.group(0).upper(), text)
