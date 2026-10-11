@@ -7,13 +7,8 @@ The whole public API is re-exported here, so one import is enough:
     2
 """
 
-from .core import (
-    capitalize_words,
-    character_count,
-    reverse,
-    slugify,
-    word_count,
-)
+from .counting import character_count, word_count
+from .transform import capitalize_words, reverse, slugify
 
 __all__ = [
     "word_count",
