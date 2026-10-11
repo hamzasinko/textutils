@@ -4,7 +4,6 @@ import pytest
 
 from textutils import capitalize_words, reverse, slugify
 
-
 # --- reverse ----------------------------------------------------------------
 
 REVERSE_CASES = [
@@ -40,7 +39,9 @@ CAPITALIZE_WORDS_CASES = [
     pytest.param("it's fine", "It's Fine", id="does-not-break-apostrophes"),
     pytest.param("a\tb", "A\tB", id="tab-is-a-separator"),
     pytest.param("", "", id="empty-string"),
-    pytest.param("  hello  world\nagain", "  Hello  World\nAgain", id="preserves-whitespace"),
+    pytest.param(
+        "  hello  world\nagain", "  Hello  World\nAgain", id="preserves-whitespace"
+    ),
     pytest.param("Hello World", "Hello World", id="already-capitalized"),
     pytest.param("héllo wörld", "Héllo Wörld", id="unicode-word-start"),
     pytest.param("123 abc", "123 Abc", id="leading-digits"),
@@ -59,7 +60,11 @@ def test_capitalize_words(text: str, expected: str) -> None:
 
 SLUGIFY_CASES = [
     pytest.param("Hello, World!", "hello-world", id="punctuation-to-hyphen"),
-    pytest.param("  Hello, World! Open Source  ", "hello-world-open-source", id="collapses-repeated-spaces"),
+    pytest.param(
+        "  Hello, World! Open Source  ",
+        "hello-world-open-source",
+        id="collapses-repeated-spaces",
+    ),
     pytest.param("Python --- is fun", "python-is-fun", id="collapses-repeated-hyphens"),
     pytest.param("Version 2.0 released", "version-2-0-released", id="keeps-digits"),
     pytest.param("", "", id="empty-string"),

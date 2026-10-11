@@ -4,7 +4,6 @@ import pytest
 
 from textutils import character_count, word_count
 
-
 # --- word_count -------------------------------------------------------------
 
 WORD_COUNT_CASES = [

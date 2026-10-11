@@ -5,7 +5,9 @@ import pytest
 from textutils._validation import _ensure_str
 
 
-@pytest.mark.parametrize("text", ["hello", "", " "], ids=["ascii", "empty", "whitespace"])
+@pytest.mark.parametrize(
+    "text", ["hello", "", " "], ids=["ascii", "empty", "whitespace"]
+)
 def test_ensure_str_accepts_strings(text: str) -> None:
     assert _ensure_str(text) is None
 
