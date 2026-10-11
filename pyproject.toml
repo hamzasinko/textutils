@@ -3,7 +3,7 @@ addopts = [
     "--cov=textutils",
     "--cov-report=term-missing",
 ]
-testpaths = ["textutils/tests"]
+testpaths = ["tests"]
 
 [tool.coverage.run]
 source = ["textutils"]
