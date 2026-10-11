@@ -2,7 +2,7 @@
 
 import pytest
 
-from textutils import capitalize_words, character_count, reverse, word_count
+from textutils import capitalize_words, character_count, reverse, slugify, word_count
 
 
 # --- word_count -------------------------------------------------------------
@@ -96,3 +96,58 @@ CAPITALIZE_WORDS_CASES = [
 @pytest.mark.parametrize("text, expected", CAPITALIZE_WORDS_CASES)
 def test_capitalize_words(text: str, expected: str) -> None:
     assert capitalize_words(text) == expected
+
+
+# --- slugify ----------------------------------------------------------------
+
+SLUGIFY_CASES = [
+    pytest.param("Hello, World!", "hello-world", id="punctuation-to-hyphen"),
+    pytest.param("  Hello, World! Open Source  ", "hello-world-open-source", id="collapses-repeated-spaces"),
+    pytest.param("Python --- is fun", "python-is-fun", id="collapses-repeated-hyphens"),
+    pytest.param("Version 2.0 released", "version-2-0-released", id="keeps-digits"),
+    pytest.param("", "", id="empty-string"),
+    pytest.param("!!!", "", id="punctuation-only"),
+    pytest.param("café au lait", "caf-au-lait", id="strips-non-ascii"),
+    pytest.param("well-known", "well-known", id="keeps-existing-hyphen"),
+    pytest.param("foo_bar", "foo-bar", id="underscore-to-hyphen"),
+    pytest.param("HELLO", "hello", id="lowercases-input"),
+    pytest.param("a\tb\nc", "a-b-c", id="tabs-and-newlines"),
+    pytest.param("--Foo--", "foo", id="strips-leading-trailing-hyphens"),
+    pytest.param("a" * 100_000, "a" * 100_000, id="very-long-input"),
+]
+
+
+@pytest.mark.parametrize("text, expected", SLUGIFY_CASES)
+def test_slugify(text: str, expected: str) -> None:
+    assert slugify(text) == expected
+
+
+# --- input validation -------------------------------------------------------
+
+ALL_FUNCTIONS = (word_count, character_count, reverse, capitalize_words, slugify)
+
+NON_STRING_VALUES = [
+    pytest.param(None, "NoneType", id="none"),
+    pytest.param(42, "int", id="int"),
+    pytest.param(3.14, "float", id="float"),
+    pytest.param(["a"], "list", id="list"),
+    pytest.param({"k": "v"}, "dict", id="dict"),
+    pytest.param(b"bytes", "bytes", id="bytes"),
+]
+
+
+@pytest.mark.parametrize("function", ALL_FUNCTIONS, ids=lambda f: f.__name__)
+@pytest.mark.parametrize("value, type_name", NON_STRING_VALUES)
+def test_non_string_input_raises_type_error(
+    function: object, value: object, type_name: str
+) -> None:
+    """Every public function rejects non-string input with a helpful message."""
+    with pytest.raises(TypeError, match=f"must be str, not {type_name}"):
+        function(value)
+
+
+def test_accepts_str_subclass() -> None:
+    class MyStr(str):
+        pass
+
+    assert word_count(MyStr("hello world")) == 2
