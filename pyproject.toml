@@ -1,0 +1,13 @@
+[tool.pytest.ini_options]
+addopts = [
+    "--cov=textutils",
+    "--cov-report=term-missing",
+]
+testpaths = ["textutils/tests"]
+
+[tool.coverage.run]
+source = ["textutils"]
+omit = ["*/tests/*"]
+
+[tool.coverage.report]
+show_missing = true
