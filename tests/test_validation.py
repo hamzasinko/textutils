@@ -9,6 +9,7 @@ from textutils._validation import _ensure_str
     "text", ["hello", "", " "], ids=["ascii", "empty", "whitespace"]
 )
 def test_ensure_str_accepts_strings(text: str) -> None:
+    """Return None for string input."""
     assert _ensure_str(text) is None
 
 
@@ -24,5 +25,6 @@ def test_ensure_str_accepts_strings(text: str) -> None:
     ],
 )
 def test_ensure_str_rejects_non_strings(value: object, type_name: str) -> None:
+    """Raise TypeError naming the offending type."""
     with pytest.raises(TypeError, match=f"must be str, not {type_name}"):
         _ensure_str(value)

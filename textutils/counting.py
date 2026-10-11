@@ -14,13 +14,16 @@ def word_count(text: str) -> int:
     Args:
         text: The string to count words in.
 
-    Returns:
+    Returns
+    -------
         The number of words in *text*. An empty string returns ``0``.
 
-    Raises:
+    Raises
+    ------
         TypeError: If *text* is not a :class:`str`.
 
-    Examples:
+    Examples
+    --------
         >>> word_count("hello world")
         2
         >>> word_count("  spaced   out  ")
@@ -38,13 +41,16 @@ def character_count(text: str) -> int:
     Args:
         text: The string to count characters in.
 
-    Returns:
+    Returns
+    -------
         The number of characters in *text*. An empty string returns ``0``.
 
-    Raises:
+    Raises
+    ------
         TypeError: If *text* is not a :class:`str`.
 
-    Examples:
+    Examples
+    --------
         >>> character_count("hello")
         5
         >>> character_count("hi there")

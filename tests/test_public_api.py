@@ -23,11 +23,13 @@ EXPECTED_ALL = [
 
 
 def test_all_lists_the_public_api() -> None:
+    """Check that __all__ lists exactly the public API."""
     assert textutils.__all__ == EXPECTED_ALL
 
 
 @pytest.mark.parametrize("name", EXPECTED_ALL)
 def test_public_names_are_importable(name: str) -> None:
+    """Check that every name in __all__ is importable."""
     assert hasattr(textutils, name)
 
 
@@ -52,6 +54,8 @@ def test_non_string_input_raises_type_error(
 
 
 def test_accepts_str_subclass() -> None:
+    """Check that public functions accept a str subclass."""
+
     class MyStr(str):
         pass
 

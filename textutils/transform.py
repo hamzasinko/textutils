@@ -15,14 +15,17 @@ def reverse(text: str) -> str:
     Args:
         text: The string to reverse.
 
-    Returns:
+    Returns
+    -------
         A new string holding the characters of *text* in reverse order. An
         empty string returns an empty string.
 
-    Raises:
+    Raises
+    ------
         TypeError: If *text* is not a :class:`str`.
 
-    Examples:
+    Examples
+    --------
         >>> reverse("stressed")
         'desserts'
         >>> reverse("abc")
@@ -43,14 +46,17 @@ def capitalize_words(text: str) -> str:
     Args:
         text: The string to transform.
 
-    Returns:
+    Returns
+    -------
         A new string with the first character of each word uppercased. An
         empty string returns an empty string.
 
-    Raises:
+    Raises
+    ------
         TypeError: If *text* is not a :class:`str`.
 
-    Examples:
+    Examples
+    --------
         >>> capitalize_words("hello world")
         'Hello World'
         >>> capitalize_words("hello WORLD")
@@ -76,15 +82,18 @@ def slugify(text: str) -> str:
     Args:
         text: The string to slugify.
 
-    Returns:
+    Returns
+    -------
         A slug containing only lowercase ASCII letters, digits, and internal
         hyphens. An empty string, or a string with no letters/digits,
         returns ``""``.
 
-    Raises:
+    Raises
+    ------
         TypeError: If *text* is not a :class:`str`.
 
-    Examples:
+    Examples
+    --------
         >>> slugify("Hello, World!")
         'hello-world'
         >>> slugify("  Hello, World! Open Source  ")

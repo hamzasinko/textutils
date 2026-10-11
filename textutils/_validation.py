@@ -7,7 +7,8 @@ def _ensure_str(text: object) -> None:
     Args:
         text: The value to validate.
 
-    Raises:
+    Raises
+    ------
         TypeError: If *text* is not a :class:`str`.
     """
     if not isinstance(text, str):

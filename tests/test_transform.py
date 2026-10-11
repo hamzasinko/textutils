@@ -22,10 +22,12 @@ REVERSE_CASES = [
 
 @pytest.mark.parametrize("text, expected", REVERSE_CASES)
 def test_reverse(text: str, expected: str) -> None:
+    """Return the characters in reverse order."""
     assert reverse(text) == expected
 
 
 def test_reverse_does_not_mutate_input() -> None:
+    """Return a new string and leave the input unchanged."""
     original = "abc"
     reverse(original)
     assert original == "abc"
@@ -53,6 +55,7 @@ CAPITALIZE_WORDS_CASES = [
 
 @pytest.mark.parametrize("text, expected", CAPITALIZE_WORDS_CASES)
 def test_capitalize_words(text: str, expected: str) -> None:
+    """Uppercase the first character of each word."""
     assert capitalize_words(text) == expected
 
 
@@ -81,4 +84,5 @@ SLUGIFY_CASES = [
 
 @pytest.mark.parametrize("text, expected", SLUGIFY_CASES)
 def test_slugify(text: str, expected: str) -> None:
+    """Return a lowercase, hyphen-separated slug."""
     assert slugify(text) == expected

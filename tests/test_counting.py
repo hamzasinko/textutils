@@ -24,6 +24,7 @@ WORD_COUNT_CASES = [
 
 @pytest.mark.parametrize("text, expected", WORD_COUNT_CASES)
 def test_word_count(text: str, expected: int) -> None:
+    """Return the number of whitespace-separated words."""
     assert word_count(text) == expected
 
 
@@ -44,4 +45,5 @@ CHARACTER_COUNT_CASES = [
 
 @pytest.mark.parametrize("text, expected", CHARACTER_COUNT_CASES)
 def test_character_count(text: str, expected: int) -> None:
+    """Return the number of characters."""
     assert character_count(text) == expected
