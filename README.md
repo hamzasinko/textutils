@@ -17,15 +17,21 @@ input raises `TypeError`.
 
 ## Installation
 
-Clone it and run it locally:
+Requires Python 3.9 or newer. No third-party runtime dependencies.
+
+Clone and install in editable mode with the development tools:
 
 ```bash
 git clone https://github.com/hamzasinko/textutils.git
 cd textutils
-python -m pytest
+python -m pip install -e ".[dev]"
 ```
 
-Requires Python 3.8 or newer. No third-party dependencies.
+Run the tests:
+
+```bash
+python -m pytest
+```
 
 ## Usage
 
