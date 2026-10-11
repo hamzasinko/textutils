@@ -12,26 +12,30 @@ _WORD_START = re.compile(r"(?<!\S)\w")
 def reverse(text: str) -> str:
     """Return *text* with its characters in reverse order.
 
-    Args:
-        text: The string to reverse.
+    Parameters
+    ----------
+    text : str
+        The string to reverse.
 
     Returns
     -------
+    str
         A new string holding the characters of *text* in reverse order. An
         empty string returns an empty string.
 
     Raises
     ------
-        TypeError: If *text* is not a :class:`str`.
+    TypeError
+        If *text* is not a :class:`str`.
 
     Examples
     --------
-        >>> reverse("stressed")
-        'desserts'
-        >>> reverse("abc")
-        'cba'
-        >>> reverse("")
-        ''
+    >>> reverse("stressed")
+    'desserts'
+    >>> reverse("abc")
+    'cba'
+    >>> reverse("")
+    ''
     """
     _ensure_str(text)
     return text[::-1]
@@ -43,28 +47,32 @@ def capitalize_words(text: str) -> str:
     Only the first character of each word is changed; the rest of each word
     is left exactly as it was. Whitespace, including newlines, is preserved.
 
-    Args:
-        text: The string to transform.
+    Parameters
+    ----------
+    text : str
+        The string to transform.
 
     Returns
     -------
+    str
         A new string with the first character of each word uppercased. An
         empty string returns an empty string.
 
     Raises
     ------
-        TypeError: If *text* is not a :class:`str`.
+    TypeError
+        If *text* is not a :class:`str`.
 
     Examples
     --------
-        >>> capitalize_words("hello world")
-        'Hello World'
-        >>> capitalize_words("hello WORLD")
-        'Hello WORLD'
-        >>> capitalize_words("it's fine")
-        "It's Fine"
-        >>> capitalize_words("")
-        ''
+    >>> capitalize_words("hello world")
+    'Hello World'
+    >>> capitalize_words("hello WORLD")
+    'Hello WORLD'
+    >>> capitalize_words("it's fine")
+    "It's Fine"
+    >>> capitalize_words("")
+    ''
     """
     _ensure_str(text)
     return _WORD_START.sub(lambda match: match.group(0).upper(), text)
@@ -79,31 +87,35 @@ def slugify(text: str) -> str:
     kept as separators, so ``"well-known"`` stays ``"well-known"`` while
     ``"foo_bar"`` becomes ``"foo-bar"``.
 
-    Args:
-        text: The string to slugify.
+    Parameters
+    ----------
+    text : str
+        The string to slugify.
 
     Returns
     -------
+    str
         A slug containing only lowercase ASCII letters, digits, and internal
         hyphens. An empty string, or a string with no letters/digits,
         returns ``""``.
 
     Raises
     ------
-        TypeError: If *text* is not a :class:`str`.
+    TypeError
+        If *text* is not a :class:`str`.
 
     Examples
     --------
-        >>> slugify("Hello, World!")
-        'hello-world'
-        >>> slugify("  Hello, World! Open Source  ")
-        'hello-world-open-source'
-        >>> slugify("Python --- is fun")
-        'python-is-fun'
-        >>> slugify("Version 2.0 released")
-        'version-2-0-released'
-        >>> slugify("!!!")
-        ''
+    >>> slugify("Hello, World!")
+    'hello-world'
+    >>> slugify("  Hello, World! Open Source  ")
+    'hello-world-open-source'
+    >>> slugify("Python --- is fun")
+    'python-is-fun'
+    >>> slugify("Version 2.0 released")
+    'version-2-0-released'
+    >>> slugify("!!!")
+    ''
     """
     _ensure_str(text)
     slug = re.sub(r"[^a-z0-9]+", "-", text.lower())
