@@ -1,21 +1,22 @@
 """textutils: small, dependency-free helpers for common text tasks.
 
-The whole public API is re-exported here, so one import is enough:
+Public API:
+    ``word_count``, ``character_count``, ``reverse``, ``capitalize_words``,
+    ``slugify``.
 
-    >>> from textutils import word_count
-    >>> word_count("hello world")
-    2
+Everything else (modules or names starting with ``_``) is internal and may
+change without notice.
 """
 
 from .counting import character_count, word_count
 from .transform import capitalize_words, reverse, slugify
 
 __all__ = [
-    "word_count",
+    "capitalize_words",
     "character_count",
     "reverse",
-    "capitalize_words",
     "slugify",
+    "word_count",
 ]
 
 __version__ = "0.1.0"
