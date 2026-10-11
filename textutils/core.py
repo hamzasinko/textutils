@@ -6,22 +6,11 @@ hints so editors can offer completions.
 
 import re
 
+from ._validation import _ensure_str
+
 __all__ = ["word_count", "character_count", "reverse", "capitalize_words", "slugify"]
 
 _WORD_START = re.compile(r"(?<!\S)\w")
-
-
-def _validate_text(text: str) -> None:
-    """Raise a TypeError if *text* is not a string.
-
-    Args:
-        text: The value to validate.
-
-    Raises:
-        TypeError: If *text* is not a :class:`str`.
-    """
-    if not isinstance(text, str):
-        raise TypeError(f"text must be str, not {type(text).__name__}")
 
 
 def word_count(text: str) -> int:
@@ -47,7 +36,7 @@ def word_count(text: str) -> int:
         >>> word_count("")
         0
     """
-    _validate_text(text)
+    _ensure_str(text)
     return len(text.split())
 
 
@@ -71,7 +60,7 @@ def character_count(text: str) -> int:
         >>> character_count("")
         0
     """
-    _validate_text(text)
+    _ensure_str(text)
     return len(text)
 
 
@@ -96,7 +85,7 @@ def reverse(text: str) -> str:
         >>> reverse("")
         ''
     """
-    _validate_text(text)
+    _ensure_str(text)
     return text[::-1]
 
 
@@ -126,7 +115,7 @@ def capitalize_words(text: str) -> str:
         >>> capitalize_words("")
         ''
     """
-    _validate_text(text)
+    _ensure_str(text)
     return _WORD_START.sub(lambda match: match.group(0).upper(), text)
 
 
@@ -162,6 +151,6 @@ def slugify(text: str) -> str:
         >>> slugify("!!!")
         ''
     """
-    _validate_text(text)
+    _ensure_str(text)
     slug = re.sub(r"[^a-z0-9]+", "-", text.lower())
     return slug.strip("-")
