@@ -7,7 +7,7 @@ from textutils import character_count, word_count
 # --- word_count -------------------------------------------------------------
 
 WORD_COUNT_CASES = [
-    pytest.param("hello world", 3, id="counts-two-words"),
+    pytest.param("hello world", 2, id="counts-two-words"),
     pytest.param("one two three", 3, id="counts-three-words"),
     pytest.param("hello", 1, id="single-word"),
     pytest.param("", 0, id="empty-string"),
