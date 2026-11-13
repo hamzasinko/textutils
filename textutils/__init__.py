@@ -8,6 +8,8 @@ Everything else (modules or names starting with ``_``) is internal and may
 change without notice.
 """
 
+from importlib.metadata import version
+
 from .counting import character_count, word_count
 from .transform import capitalize_words, reverse, slugify
 
@@ -19,4 +21,4 @@ __all__ = [
     "word_count",
 ]
 
-__version__ = "0.1.0"
+__version__ = version("textutils-hs")
