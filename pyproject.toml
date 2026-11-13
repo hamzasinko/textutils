@@ -1,21 +1,21 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=77.0.3"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "textutils"
+name = "textutils-hs"
 version = "0.1.0"
 description = "Small, dependency-free helpers for common text tasks."
 readme = "README.md"
-license = { text = "MIT" }
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.9"
 authors = [
-    { name = "Hamza Sinko" },
+    { name = "Hamza Fikri" },
 ]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
@@ -34,10 +34,15 @@ dev = [
     "black>=24.0",
     "ruff>=0.5",
     "pre-commit>=3.7",
+    "build>=1.2",
+    "twine>=5.0",
 ]
 
 [project.urls]
+Homepage = "https://github.com/hamzasinko/textutils"
 Repository = "https://github.com/hamzasinko/textutils"
+Issues = "https://github.com/hamzasinko/textutils/issues"
+Changelog = "https://github.com/hamzasinko/textutils/blob/main/CHANGELOG.md"
 
 [tool.setuptools.packages.find]
 include = ["textutils*"]
